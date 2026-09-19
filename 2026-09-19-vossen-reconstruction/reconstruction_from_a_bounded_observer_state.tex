@@ -1,0 +1,252 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage[a4paper,margin=2cm,top=1.8cm,bottom=1.8cm]{geometry}
+\usepackage{amsmath,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\titleformat{\section}{\normalfont\large\bfseries}{\thesection.}{0.5em}{}
+\titlespacing*{\section}{0pt}{1.1ex plus 0.4ex}{0.6ex}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55ex plus 0.2ex}
+\setlist{nosep,leftmargin=1.4em}
+\allowdisplaybreaks
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\nf}{\operatorname{nf}}
+\newcommand{\cit}[1]{[#1]}
+
+\hypersetup{pdftitle={Reconstruction from a Bounded Observer State},
+  pdfauthor={Bernhard Mueller}}
+
+\begin{document}
+
+\begin{center}
+{\LARGE\bfseries Reconstruction from a Bounded Observer State}\\[0.7ex]
+{\normalsize Compression and recovery in Observer-Patch Holography (OPH)}\\[0.9ex]
+{\small Bernhard Mueller \quad$\cdot$\quad Pragma Research Inc.\quad$\cdot$\quad 19 September 2026}
+\end{center}
+\vspace{-1.5ex}
+
+\begin{abstract}
+\noindent In OPH no global computer renders 3D particle coordinates frame by frame.
+What we perceive as three-dimensional space, fields and time moving forward are
+observer-facing readouts of a computed quotient normal form on a holographic screen.
+The substrate has no background clock, no 3D space and no master copy of the world. It
+has a finite network of observer patches, a mismatch score on every shared boundary
+seam and a local repair move that lowers those scores, and each repair move is a
+quantum recovery channel. A bounded observer therefore needs no copy of the world
+beyond its boundary. This note makes that quantitative: the relational information
+that can be removed from an observer's representation is measured by the conditional
+mutual information across its boundary collar, which bounds the best reconstruction
+error from above and below.
+\end{abstract}
+
+\section{Rendering without a master copy}
+
+Bulk spacetime is read off the repaired normal form. The geometry readout is a
+function of that gauge-invariant quotient and does not depend on hidden carrier
+coordinates, gauge representatives or the repair schedule \cit{SM, Thm.~6.56}. On its
+declared branch the spacetime paper recovers flat $1{+}3$ causal order, Lorentz-frame
+kinematics and, under further stated premises, the Einstein equation up to a
+cosmological constant \cit{ST}. There is no master database holding the state of
+every atom. The computation can be split over any number of workers and shards, and
+every admissible execution gives the same observer readouts whatever the partition,
+schedule or restart history \cit{C, Thm.~9.5, Cor.~9.6}. An observer holds a finite
+patch whose records form a commutative central algebra, and its local world is
+evaluated when it reads that algebra \cit{C, Thm.~7.2}.
+
+Stefaan Vossen asked, in a discussion of compression and what he calls holographic
+beingness, how much relational information can be removed from a representation
+before an independent operator can no longer reconstruct the relevant larger state.
+OPH answers this with the collar Markov condition and its Petz/Fawzi--Renner recovery
+channels (Section~3). The repair move of the substrate is itself such a recovery
+channel, so the one update rule of an OPH world is reconstruction from a compressed
+boundary. Vossen's slogan ``understanding is reconstruction from compressed
+representation'' is, in OPH, the dynamical law.
+
+\section{The substrate}
+
+\textbf{Patch net} \cit{C, Def.~2.1--2.2, Prop.~2.3}. A finite connected graph
+$G=(V,E)$; patch $i$ has a finite state space $S_i$, the global space is
+$\Sigma=\prod_i S_i$, and each overlap $e=\{i,j\}$ has an interface alphabet $I_e$
+with restriction maps $\pi_{i,e}:S_i\to I_e$. The mismatch potential
+\[
+\Phi(s)=\sum_{e=\{i,j\}\in E} w_e\,d_e\bigl(\pi_{i,e}(s_i),\pi_{j,e}(s_j)\bigr),
+\qquad w_e>0,\quad d_e(a,b)=0\iff a=b,
+\]
+vanishes exactly on the globally consistent set $C=\Phi^{-1}(0)$, a finite constraint code.
+
+\textbf{Repair} \cit{C, Def.~3.1--3.2}. Patch $i$ carries a collar chart
+$A_i\!-\!B_i\!-\!D_i$ around its overlaps. A repair move $T_i$ changes only patch $i$
+and is induced by a recovery move on that collar: the exact Markov splice when
+$I(A_i{:}D_i\,|\,B_i)=0$, otherwise
+$(\id_{A_i}\otimes\mathcal R_i)(\omega_{A_iB_i})$ with $\mathcal R_i$ a
+Petz/Fawzi--Renner recovery channel. A move is accepted only if it strictly lowers
+the score $\Phi_i$ of the overlaps it touches.
+
+\textbf{Normal form} \cit{C, Thm.~3.25, Cor.~3.26, Thm.~5.2}. Termination, local
+confluence on the gauge quotient $Q=\Sigma/\Gamma$, repair completeness and Newman's
+lemma give each
+initial state $s$ a unique quotient normal form $\overline{\nf}(q(s))\in q(C)$,
+reached by every maximal asynchronous repair run. Every quotient observable takes the
+same value for every update order, and gauge-equivalent inputs reach the same normal
+form. Bare consensus fixes no metric by itself \cit{C, Thm.~2.6}; geometry enters
+through the declared readout branch of \cit{SM, ST}.
+
+\textbf{Pairwise agreement is not enough} \cit{C, Thm.~4.1, Cor.~4.2}. For labels in
+an abelian group, the seam equations $x_v-x_u=b_e$ have a global solution if and only
+if $\sum_{e\in\gamma}\varepsilon_\gamma(e)\,b_e=0$ on every cycle $\gamma$. On a
+$\mathbb Z_2$ triangle with $b=(0,0,1)$ each seam is satisfiable on its own and the
+triangle is not. In the language of tomography, one projection never suffices, and
+global consistency is a condition on cycles of views.
+
+\textbf{Records} \cit{C, Def.~7.1, Thm.~7.2}. On a completed slice with accessible
+algebra $\mathcal A_t$, the record projectors $\widehat P_a(t)\in Z(\mathcal A_t)$
+generate a finite commutative algebra $\mathcal Z_{\mathrm{rec}}(t)$. For an event
+$E$ in it, $\mathbb P_t(E)=\Tr(\rho_t\widehat P_E)$, the declared L\"uders update is
+$\rho_t|_E=\widehat P_E\rho_t\widehat P_E/\Tr(\rho_t\widehat P_E)$, and an immediate
+reread returns $E$ with probability one.
+
+\section{Removal and reconstruction}
+
+Let $A$ be the patch interior, $B$ its collar and $D$ everything beyond. The observer
+holds $\rho_{AB}$; the larger state is $\rho_{ABD}$. With von Neumann entropies $S$
+in nats and modular Hamiltonians $K_X=-\ln\rho_X$,
+\[
+I(A{:}D\,|\,B)=S(AB)+S(BD)-S(B)-S(ABD)
+=\Tr\rho_{ABD}\bigl(K_{AB}+K_{BD}-K_B-K_{ABD}\bigr)\;\ge\;0
+\]
+\cit{LR; C, App.~A}. It measures the correlation between $A$ and $D$ that $B$ does
+not carry. Write
+\[
+\delta_\star:=\min_{\mathcal R:\,B\to BD}\tfrac12\bigl\|\rho_{ABD}-(\id_A\otimes\mathcal R)(\rho_{AB})\bigr\|_1
+\]
+for the best reconstruction error of an operator that acts on the collar alone.
+
+\textbf{Exact case.} $I(A{:}D\,|\,B)=0$ if and only if
+$\rho_{ABD}=(\id_A\otimes\mathcal P)(\rho_{AB})$ for the Petz map \cit{P1, P2}
+\[
+\mathcal P_{B\to BD}(X)=\rho_{BD}^{1/2}\bigl(\rho_B^{-1/2}X\rho_B^{-1/2}\otimes 1_D\bigr)\rho_{BD}^{1/2}
+\qquad(\text{inverses on supports}),
+\]
+and if and only if
+$\mathcal H_B=\bigoplus_\alpha\mathcal H_{b_L^\alpha}\otimes\mathcal H_{b_R^\alpha}$ with
+\cit{HJPW}
+\[
+\rho_{ABD}=\bigoplus_\alpha p_\alpha\,\rho^{(\alpha)}_{Ab_L^\alpha}\otimes\rho^{(\alpha)}_{b_R^\alpha D}.
+\]
+On this form the splice identity of \cit{C, Thm.~A.1} holds: replacing each
+$\rho^{(\alpha)}_{b_R^\alpha D}$ by any state $\sigma^{(\alpha)}_{b_R^\alpha D'}$ on
+the same sectors leaves $\Tr(X\rho)$ unchanged for every observable $X$ on
+$A\cup b_L$. The entire exterior can be removed and exchanged; what must be kept is
+the sector structure of the collar.
+
+\textbf{Approximate case.} For every state, with $d_A=\dim\mathcal H_A$ and $h$ the
+binary entropy in nats,
+\begin{align}
+\delta_\star^2&\le 1-e^{-I(A:D|B)}\le I(A{:}D\,|\,B),\label{eq:fr}\\
+I(A{:}D\,|\,B)&\le 2\delta_\star\ln d_A+(1+\delta_\star)\,h\!\bigl(\tfrac{\delta_\star}{1+\delta_\star}\bigr).\label{eq:w}
+\end{align}
+Bound \eqref{eq:fr} is the Fawzi--Renner theorem
+$I(A{:}D\,|\,B)\ge-2\ln F\bigl(\rho_{ABD},(\id_A\otimes\mathcal R)(\rho_{AB})\bigr)$,
+$F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1$ \cit{FR}, combined with
+$\tfrac12\|\rho-\sigma\|_1\le\sqrt{1-F^2}$ \cit{FvdG}; the channel $\mathcal R$ can
+be taken universal, built from $\rho_{BD}$ alone \cit{JRSWW, Cor.~4.1}. For
+\eqref{eq:w}, let $\sigma=(\id_A\otimes\mathcal R)(\rho_{AB})$ attain $\delta_\star$.
+Data processing gives $I(A{:}BD)_\sigma\le I(A{:}B)_\rho$ and $\sigma_A=\rho_A$, so
+$I(A{:}D\,|\,B)_\rho=I(A{:}BD)_\rho-I(A{:}B)_\rho\le S(A|BD)_\sigma-S(A|BD)_\rho$,
+which Winter's continuity bound controls \cit{W, Lemma~2}. Bounded observables
+inherit \eqref{eq:fr}: $|\Tr X(\rho-\sigma)|\le 2\|X\|_\infty\delta_\star$.
+
+\textbf{Removal criterion.} Let the observer keep only a part $B'$ of its boundary
+representation, $B=B'B''$. Rebuilding the dropped part together with the exterior is
+the same problem with $B\to B'$ and $D\to B''D$. For a target error $\eta$, an
+operator acting on $B'$ alone succeeds whenever
+\[
+I(A{:}B''D\,|\,B')\le-\ln(1-\eta^2),
+\]
+and by \eqref{eq:w} no operator on $B'$ succeeds once
+$I(A{:}B''D\,|\,B')>2\eta\ln d_A+(1+\eta)\,h\bigl(\eta/(1+\eta)\bigr)$. The relational
+information that can be removed is the part whose removal keeps this conditional
+mutual information below tolerance. The decoding rule is fixed by
+$\rho_{B'B''D}$, the statistics of the world beyond the interior, so the observer
+needs no copy of $D$, only access to the decoding rule.
+
+\textbf{Which boundary factor faces the observer.} Zero conditional mutual
+information fixes the split of $B$ from the state. The geometric statements of OPH
+need that split to agree with the preselected edge split of the collar, a separate
+condition called Markov-split alignment \cit{ST, Sec.~2.3}. Four qubits with
+$\rho=\Phi_{AB_R}\otimes\Phi_{B_LD}$ (Bell pairs across the cut) have
+$I(A{:}D\,|\,B)=0$ and $I(A{:}B_R)=2\ln2$: the compression is exact, and the factor
+of $B$ that faces the observer is $B_R$. Storage and representation separate
+already at the level of a single collar.
+
+\textbf{What the part carries about the whole.} For a gauge-invariant collar with
+sectors $\alpha$ of dimension $d_\alpha$, the one-sided state obeys \cit{FL, Thm.~5.2}
+\[
+S(\rho_L)=H(p)+\sum_\alpha p_\alpha S(\rho_{L,\alpha})+\sum_\alpha p_\alpha\ln d_\alpha ,
+\]
+and the last term is the expectation of the central observable
+$Z_L=\sum_\alpha(\ln d_\alpha)P^L_\alpha$. The boundary imprint sits in the
+commutative center, the same place as the records.
+
+\section{Compression vocabulary in OPH}
+
+\begin{tabular}{@{}p{0.29\linewidth}p{0.67\linewidth}@{}}
+larger state & $\rho_{ABD}$\\
+storage & $\rho_{AB}$: the patch and its collar\\
+representation & collar sectors $\alpha$ and records in the commutative center\\
+decoding rules & recovery channel $\mathcal R_{B\to BD}$, fixed by $\rho_{BD}$\\
+reconstruction & $(\id_A\otimes\mathcal R)(\rho_{AB})$, error bounded by \eqref{eq:fr}--\eqref{eq:w}\\
+what can be removed & all of $D$, and any $B''$ with $I(A{:}B''D\,|\,B')\approx0$\\
+additional perspectives & overlapping patches; consistency is a cycle condition, and
+repair gives all of them one normal form
+\end{tabular}
+
+In OPH the relation between a part and the whole is fixed by recoverability, and the
+whole that observers share is the quotient normal form, which no single patch stores.
+Vossen's weaker proposition, that a bounded being carries recoverable relations to a
+whole it never becomes, holds there with the conditional mutual information as its
+measure.
+
+{\footnotesize
+\section*{References}
+\vspace{-0.4ex}
+\emph{OPH papers, paper release r2043 (13 September 2026):}
+\begin{enumerate}[leftmargin=4.3em,labelwidth=3.8em,labelsep=0.5em,align=right,itemsep=0.15ex]
+\item[{[C]}] B.~Mueller, K.~Xue, J.~Kim, K.~A.~Anirudha, D.~Matscheko, J.~Hill,
+\emph{Reality as a Consensus Protocol: The Fixed-Point Computation That Implements Physics},
+\url{https://github.com/FloatingPragma/observer-patch-holography/blob/main/paper/reality_as_consensus_protocol.pdf}.
+\item[{[SM]}] B.~Mueller, A.~Osika, K.~Xue, B.~Cassie, B.~de La Fourni\`ere,
+\emph{Federated Echosahedral Screen Microphysics: Patch Hardware, Records, and Observer Synchronization in OPH},
+\url{https://github.com/FloatingPragma/observer-patch-holography/blob/main/paper/screen_microphysics_and_observer_synchronization.pdf}.
+\item[{[ST]}] B.~Mueller, A.~Osika, M.~Poneder, K.~Xue, P.~Nguyen, M.~A.~Visser, D.~Matscheko, B.~de La Fourni\`ere,
+\emph{Recovering Observer Spacetime and Einstein Dynamics from Overlap Consistency},
+\url{https://github.com/FloatingPragma/observer-patch-holography/blob/main/paper/recovering_observer_spacetime_and_einstein_dynamics_from_overlap_consistency.pdf}.
+\item[{[FL]}] B.~Mueller, A.~Osika et al.,
+\emph{Finite Observer Consensus as a Reconstruction Principle: Normal Forms, the Standard Model Lie Type, and a Route to the Einstein Field Equation} (flagship paper),
+\url{https://philpapers.org/rec/MUEFOC};
+\url{https://github.com/FloatingPragma/observer-patch-holography/blob/main/flagship/from_observer_consensus_to_standard_physics.pdf}.
+\end{enumerate}
+\vspace{-0.4ex}
+\emph{Quantum information:}
+\begin{enumerate}[leftmargin=4.3em,labelwidth=3.8em,labelsep=0.5em,align=right,itemsep=0.15ex]
+\item[{[FR]}] O.~Fawzi, R.~Renner, Quantum conditional mutual information and approximate Markov chains, \emph{Commun.\ Math.\ Phys.}\ \textbf{340}, 575--611 (2015).
+\item[{[FvdG]}] C.~A.~Fuchs, J.~van de Graaf, Cryptographic distinguishability measures for quantum-mechanical states, \emph{IEEE Trans.\ Inf.\ Theory} \textbf{45}, 1216--1227 (1999).
+\item[{[HJPW]}] P.~Hayden, R.~Jozsa, D.~Petz, A.~Winter, Structure of states which satisfy strong subadditivity of quantum entropy with equality, \emph{Commun.\ Math.\ Phys.}\ \textbf{246}, 359--374 (2004).
+\item[{[JRSWW]}] M.~Junge, R.~Renner, D.~Sutter, M.~M.~Wilde, A.~Winter, Universal recovery maps and approximate sufficiency of quantum relative entropy, \emph{Ann.\ Henri Poincar\'e} \textbf{19}, 2955--2978 (2018).
+\item[{[LR]}] E.~H.~Lieb, M.~B.~Ruskai, Proof of the strong subadditivity of quantum-mechanical entropy, \emph{J.\ Math.\ Phys.}\ \textbf{14}, 1938--1941 (1973).
+\item[{[P1]}] D.~Petz, Sufficient subalgebras and the relative entropy of states of a von Neumann algebra, \emph{Commun.\ Math.\ Phys.}\ \textbf{105}, 123--131 (1986).
+\item[{[P2]}] D.~Petz, Sufficiency of channels over von Neumann algebras, \emph{Quart.\ J.\ Math.}\ \textbf{39}, 97--108 (1988).
+\item[{[W]}] A.~Winter, Tight uniform continuity bounds for quantum entropies: conditional entropy, relative entropy distance and energy constraints, \emph{Commun.\ Math.\ Phys.}\ \textbf{347}, 291--313 (2016).
+\end{enumerate}
+}
+
+\end{document}
