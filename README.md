@@ -8,7 +8,9 @@ also attached to a GitHub release so it can be linked directly.
 |------|------|-----|
 | 2026-09-19 | Reconstruction from a Bounded Observer State: compression and recovery in OPH, for Stefaan Vossen | [download](https://github.com/muellerberndt/oph-correspondence/releases/download/vossen-2026-09-19/reconstruction_from_a_bounded_observer_state.pdf) · [source](2026-09-19-vossen-reconstruction/) |
 
-The OPH papers themselves are at
+The flagship OPH paper is on PhilPapers:
+[Finite Observer Consensus as a Reconstruction Principle](https://philpapers.org/rec/MUEFOC).
+All OPH papers are at
 [FloatingPragma/observer-patch-holography](https://github.com/FloatingPragma/observer-patch-holography).
 
 Build a note with `tectonic <file>.tex`.
