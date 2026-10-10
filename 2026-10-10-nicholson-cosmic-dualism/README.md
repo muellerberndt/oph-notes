@@ -14,4 +14,4 @@ Files:
   in the captions); their licences are listed in the audit as open items.
 
 The PDF was rendered from the Markdown with WeasyPrint. Direct downloads are attached to the
-release `nicholson-2026-10-10`.
+release `nicholson-2026-10-10` of https://github.com/muellerberndt/oph-notes.
