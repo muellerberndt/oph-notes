@@ -1,5 +1,7 @@
 # OPH correspondence
 
+**OPH is a rigorous, consistent and complete description of the unified, self-creating computational Universe we inhabit.**
+
 Notes written in reply to questions about Observer-Patch Holography (OPH). Each note
 lives in its own folder with its LaTeX source and the compiled PDF, and each PDF is
 also attached to a GitHub release so it can be linked directly.
