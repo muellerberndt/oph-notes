@@ -2,6 +2,11 @@
 
 **OPH is a rigorous, consistent and complete description of the unified, self-creating computational Universe we inhabit.**
 
+<p align="center">
+  <a href="https://particles.floatingpragma.ai/"><img src="assets/particles-banner.gif" alt="Watch a universe make its own particles: 81,920 observers, one local repair rule, 71 matches with our universe. Open the live simulation at particles.floatingpragma.ai." width="100%"></a>
+</p>
+<p align="center"><b>▶ <a href="https://particles.floatingpragma.ai/">Open the live simulation</a></b> · <a href="https://particles.floatingpragma.ai/?page=matches">All matches with our universe</a> · <a href="https://github.com/FloatingPragma/observer-patch-holography">Theory repository</a></p>
+
 Notes written in reply to questions about Observer-Patch Holography (OPH). Each note
 lives in its own folder with its LaTeX source and the compiled PDF, and each PDF is
 also attached to a GitHub release so it can be linked directly.
